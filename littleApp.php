@@ -11,7 +11,7 @@ $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
 $requestMethod = "GET";
 if (isset($_GET['user'])) {$user = $_GET['user'];} else {$user = "iagdotme";}
 if (isset($_GET['count'])) {$user = $_GET['count'];} else {$count = 20;}
-$getfield = '?screen_name=$user&count=$count';
+$getfield = "?screen_name=$user&count=$count";
 $twitter = new TwitterAPIExchange($settings);
 $string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
