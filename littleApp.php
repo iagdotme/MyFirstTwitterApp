@@ -11,7 +11,7 @@ $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
 $requestMethod = "GET";
 if (isset($_GET['user'])) {$user = $_GET['user'];} else {$user = "iagdotme";}
 if (isset($_GET['count'])) {$count = $_GET['count'];} else {$count = 20;}
-$getfield = "?screen_name=$user&count=$count";
+$getfield = "?screen_name=$user&count=$count&tweet_mode=extended";
 $twitter = new TwitterAPIExchange($settings);
 $string = json_decode($twitter->setGetfield($getfield)
 ->buildOauth($url, $requestMethod)
@@ -20,7 +20,7 @@ if(array_key_exists("errors", $string)) {echo "<h3>Sorry, there was a problem.</
 foreach($string as $items)
     {
         echo "Time and Date of Tweet: ".$items['created_at']."<br />";
-        echo "Tweet: ". $items['text']."<br />";
+        echo "Tweet: ". $items['full_text']."<br />";
         echo "Tweeted by: ". $items['user']['name']."<br />";
         echo "Screen name: ". $items['user']['screen_name']."<br />";
         echo "Followers: ". $items['user']['followers_count']."<br />";
